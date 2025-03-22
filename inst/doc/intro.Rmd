@@ -32,8 +32,12 @@ those great resources:
 library(featureflag)
 ```
 
-The `featureflag` package currently supports one type of feature flags: bool feature flags (simple on and off flags). A bool feature flag can be created like this:
+The `featureflag` package currently supports the following types of feature flags: 
+* bool feature flags - simple on and off flags
+* percentage feature flags - flags that are randomly enabled/disabled based on the configured percentage
+* time period feature flags - flags that are enabled during a specified time period e.g. from 2020-01-01 10:00:00 until 2020-02-01 10:00:00
 
+A bool feature flag can be created like this:
 ```{r}
 my_bool_feature_flag <- create_bool_feature_flag(value = TRUE)
 ```
@@ -42,7 +46,7 @@ Now you can use it in combination with the `is_enabled` method to branch out log
 
 ```{r}
 if (is_enabled(my_bool_feature_flag)) {
-  print("Running my feature...")  
+  print("Running my feature...")
 }
 ```
 
@@ -50,7 +54,7 @@ In case we wanted to run some default functionality when our feature flag is off
 
 ```{r}
 if (is_enabled(my_bool_feature_flag)) {
-  print("Running my feature...")  
+  print("Running my feature...")
 } else {
   print("Running my default functionality...")
 }

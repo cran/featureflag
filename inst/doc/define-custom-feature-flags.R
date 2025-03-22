@@ -1,4 +1,4 @@
-## ---- include = FALSE---------------------------------------------------------
+## ----include = FALSE----------------------------------------------------------
 knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>"
@@ -9,10 +9,10 @@ library(featureflag)
 
 create_odd_feature_flag <- function(number) {
   flag <- create_feature_flag()
-  
+
   flag$number <- number
   class(flag) <- c("odd_feature_flag", class(flag))
-  
+
   flag
 }
 

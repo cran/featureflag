@@ -28,3 +28,45 @@ prepend_class <- function(x, class_name) {
   class(x) <- c(class_name, class(x))
   x
 }
+
+
+#' Checks if the provided object is null or a non NA datetime object.
+#'
+#' @param x object to be tested
+#'
+#' @noRd
+#'
+null_or_datetime <- function(x) {
+  assert(length(x) <= 1, "Checked argument should be at most a single element")
+  is.null(x) || (inherits(x, "POSIXct") && !is.na.POSIXlt(x))
+}
+
+
+#' Asserts whether the provided object is null or a non NA datetime object
+#'
+#' @param x object to be tested
+#'
+#' @noRd
+#'
+assert_null_or_datetime <- function(x) {
+  assert(null_or_datetime(x), "Object should be NULL or a non NA datetime instance")
+}
+
+#' Checks if shiny is available
+#'
+#' @noRd
+#'
+is_shiny_available <- function() {
+  requireNamespace("shiny", quietly = TRUE)
+}
+
+#' Throws an error if shiny is not available
+#'
+#' @noRd
+#'
+assert_shiny_available <- function() {
+  assert(
+    expression = is_shiny_available(),
+    error = "'shiny' has to be installed to use this functionality"
+  )
+}
